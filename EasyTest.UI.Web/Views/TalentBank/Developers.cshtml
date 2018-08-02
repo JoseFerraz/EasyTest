@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Easy Communication and Technology | Talent Bank - Developers";
+
+    @section exclusive {
+        <link href="~/Content/developers.css" rel="stylesheet" type="text/css" />
+    }
+}
+
+<div class="container-fluid" ng-controller="developersCtrl">
+    <div class="row">
+        <hgroup class="title-card">
+            <h1>Talent Bank</h1>
+            <h2>Developers</h2>
+        </hgroup>
+
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="search-bar">
+                <input type="text" placeholder="Search talents" ng-model="search" ng-model-options="{ updateOn: 'default', debounce: { default: 500 } }">
+                <i class="fas fa-search"></i>
+                <span class="search-bar-border"></span>
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+            <table class="developers-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Test project link</th>
+                        <th>Portfolio</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="developerTalent in filteredDevelopersTalents = (developersTalents | filter:{ name: search }) | itemsPerPage:12 track by developerTalent.id">
+                        <th>Name:</th>
+                        <td>{{ ::developerTalent.name }}</td>
+                        <th>E-mail:</th>
+                        <td>{{ ::developerTalent.email }}</td>
+                        <th>Test project link:</th>
+                        <td ng-class="{ 'has-link': developerTalent.testProjectLink, 'no-link': !developerTalent.testProjectLink }"><span ng-click="openLink(developerTalent.testProjectLink)">{{ ::developerTalent.testProjectLink || "-" }}</span></td>
+                        <th>Portfolio:</th>
+                        <td ng-class="{ 'has-link': developerTalent.portfolioLink, 'no-link': !developerTalent.portfolioLink }"><span ng-click="openLink(developerTalent.portfolioLink)">{{ ::developerTalent.portfolioLink || "-" }}</span></td>
+
+                        <th>Actions:</th>
+                        <td>
+                            <a href="~/talent-bank/developers/details/{{ ::developerTalent.id }}"><i class="fas fa-id-card" title="Details"></i></a>
+                            <a href="~/talent-bank/developers/edit/{{ ::developerTalent.id }}"><i class="fas fa-edit" title="Edit"></i></a>
+                            <i class="fas fa-trash-alt" title="Delete" ng-click="deleteDeveloperTalent(developerTalent)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="no-records-found" ng-show="!developersTalents || filteredDevelopersTalents.length == 0">
+                No records found.
+            </div>
+
+            <dir-pagination-controls template-url="~/Scripts/Angular/views/templates/dirPagination.html" max-size="pagingMaxSize" derection-links="true" boundary-links="true"></dir-pagination-controls>
+        </div>
+    </div>
+
+    <button type="button" class="goToTop" ng-click="goToTop()"><i class="fas fa-chevron-circle-up"></i></button>
+</div>

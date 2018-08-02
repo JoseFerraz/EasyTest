@@ -1,0 +1,595 @@
+﻿/* mobile first */
+body {
+    overflow: auto !important;
+    padding: 0px !important;
+}
+
+p {
+    font-family: 'Open Sans';
+    color: #878787;
+}
+
+a:link, a:visited, a:hover, a:active {
+    font-family: 'Open Sans';
+    color: #878787;
+    text-decoration: underline;
+}
+
+.title-card {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.title-card h1 {
+    font-family: 'Open Sans';
+    font-weight: bold;
+    font-size: 1.7em;
+    text-transform: uppercase;
+}
+
+.title-card h2 {
+    color: #878787;
+    font-size: 1em;
+}
+
+.form-status {
+    position: relative;
+    margin-bottom: 70px;
+}
+
+.form-steps {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    text-align: center;
+}
+
+.form-steps li {
+    display: inline-block;
+    margin: 0px -2px;
+    width: 25%;
+    vertical-align: top;
+    text-align: center;
+}
+
+.form-steps li div {
+    width: 60px;
+    height: 60px;
+    border: 3px solid #ccc;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #ccc;
+    text-align: center;
+    line-height: 60px;
+    margin: 0px auto;
+    cursor: pointer;
+}
+
+.form-steps li span {
+    color: #878787;
+    font-size: 0.8em;
+}
+
+.form-steps li.current-step div, .form-steps li.completed-step div {
+    background-color: #af1a20;
+    border-color: #af1a20;
+    color: #fff;
+}
+
+.form-steps li.completed-step span {
+    color: #af1a20;
+}
+
+.form-progress-bar {
+    z-index: -1;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 30px;
+    left: 12.5%;
+    height: 4px;
+    background-color: #af1a20;
+    transition: width linear .1s;
+}
+
+.step-1 {
+    width: 0%;
+}
+
+.step-2 {
+    width: 25%;
+}
+
+.step-3 {
+    width: 50%;
+}
+
+.step-4 {
+    width: 75%;
+}
+
+.form-description {
+    margin-bottom: 30px;
+}
+
+.form-description h2 {
+    padding: 16px;
+    text-align: center;
+    background-color: #af1a20;
+    color: #fff;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.form-description p {
+    padding: 0px 15px;
+}
+
+.validation-area {
+    text-align: left;
+}
+
+.error-messages {
+    width: 85%;
+}
+
+.error-message {
+    padding: 15px;
+    margin: 15px 0px;
+    border-radius: 4px;
+    background-color: #af1a20;
+    color: #fff;
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.error-messages.ng-enter, .error-message.ng-enter {
+    animation: fadeIn 0.1s;
+}
+
+.error-messages.ng-leave, .error-message.ng-leave {
+    animation: fadeOut 0.1s;
+}
+
+.div-field {
+    clear: both;
+    border: solid 1px #ccc;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.div-field:last-child {
+    margin-bottom: 0px;
+}
+
+.field-description, .dynamic-field-description {
+    clear: both;
+    font-size: 18px;
+}
+
+.field-value {
+    display: inline-block;
+    margin-bottom: 60px;
+    word-break: break-word;
+}
+
+.field-value:last-child {
+    margin-bottom: 0px;
+}
+
+.field-value.has-link {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.field-value.no-link {
+    cursor: default;
+    text-decoration: none;
+}
+
+input, textarea {
+    width: 100%;
+    border: none;
+    padding: 12px 0px 12px 12px;
+    font-family: 'Open Sans';
+    color: #878787;
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+    overflow: auto;
+}
+
+input:focus, textarea:focus {
+    outline: 0px;
+}
+
+.required-field {
+    border-left: 6px solid #af1a20;
+}
+
+.field-label {
+    display: none;
+    float: right;
+    position: relative;
+    width: 25%;
+    padding: 10px 0px;
+    margin-right: 4%;
+    text-align: right;
+    color: #6f6f6f;
+}
+
+.field-label:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 105px;
+    background: #ddd;
+    -webkit-transform: skew(-20deg);
+    -moz-transform: skew(-20deg);
+    -ms-transform: skew(-20deg);
+    -o-transform: skew(-20deg);
+    transform: skew(-20deg);
+}
+
+.no-field-label {
+    width: 100%;
+}
+
+.level-selector {
+    width: 80%;
+    margin: 0px auto 50px auto;
+    text-align: center;
+}
+
+.level-selector h3 {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-family: 'Open Sans';
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #878787;
+}
+
+.level-selector label {
+    margin: 0px 1%;
+}
+
+.level-selector input[type="radio"] {
+    width: 0px;
+    opacity: 0;
+}
+
+.level-selector label span {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.level-selector input[type="radio"]:checked + span{
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
+.level-selector input[type="radio"]:focus + span {
+    border: 2px solid #a5c7fe;
+}
+
+.level-bar {
+    height: 20px;
+    margin-top: 20px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.level {
+    height: 100%;
+    border-radius: 6px;
+    transition: all 0.5s linear;
+}
+
+.level-0 {
+    width: 0%;
+}
+
+.level-1 {
+    width: 20%;
+    background-color: #e9573e;
+}
+
+.level-2 {
+    width: 40%;
+    background-color: #e77e23;
+}
+
+.level-3 {
+    width: 60%;
+    background-color: #f6bb43;
+}
+
+.level-4 {
+    width: 80%;
+    background-color: #8dc153;
+}
+
+.level-5 {
+    width: 100%;
+    background-color: #239454;
+}
+
+.check {
+  display: block;
+  position: relative;
+  padding: 0px 10px 0px 30px;
+  margin-bottom: 32px;
+}
+
+.check input[type="checkbox"] {
+  width: 0px;
+  opacity: 0;
+}
+
+.check .check-mark {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #ccc;
+  cursor: pointer;
+  transition: all .1s;
+}
+
+.check input[type="checkbox"]:checked + .check-mark {
+  height: 12px;
+  border-top: none;
+  border-right: none;
+  border-color: #af1a20;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.check .choice-description {
+  font-family: 'Open Sans';
+  font-weight: normal;
+  color: #878787;
+  cursor: pointer;
+}
+
+.check input[type="checkbox"]:focus ~ .choice-description {
+  outline: thin dotted #000;
+}
+
+.form-buttons {
+    margin-top: 50px;
+}
+
+.form-button {
+    margin-bottom: 8px;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 3px;
+    transition: all 0.2s linear;
+}
+
+.form-buttons, .form-button:last-child {
+    margin-bottom: 70px;
+}
+
+.form-button-back {
+    background-color: #ddd;
+    color: #666;
+}
+
+.form-button-next, .form-button-send {
+    background-color: #af1a20;
+    color: #fff;
+}
+
+.form-button-next:hover {
+    background-color: #930f10;
+}
+
+.paging-buttons {
+    width: 100%;
+    margin: 30px 0px 70px 0px;
+}
+
+.paging-buttons button {
+    border: none;
+    outline: none;
+    padding: 6px 9px;
+    margin: 0.5px;
+    background-color: #af1a20;
+    color: #fff;
+    text-decoration: underline;
+}
+
+.paging-buttons .active-paging-button {
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+}
+
+.alert-result .modal-body, .confirm-action .modal-body {
+    background-color: #af1a20;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert-result-button, .alert-result-button:focus, .confirm-action-button-confirm, .confirm-action-button-confirm:focus {
+    width: 100%;
+    margin: 3px 0px !important;
+    padding: 15px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 3px;
+    transition: all 0.2s linear;
+    background-color: #af1a20;
+    color: #fff;
+}
+
+.alert-result-button:hover, .confirm-action-button-confirm:hover {
+    background-color: #930f10;
+    color: #fff;
+}
+
+.confirm-action-button-cancel {
+    width: 100%;
+    margin: 3px 0px !important;
+    padding: 15px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 3px;
+    background-color: #ddd;
+    color: #666;
+}
+
+.goToTop {
+    display: none;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: 0px;
+    border-radius: 50%;
+    background-color: #af1a20;
+    color: #fafafa;
+    font-size: 1.4em;
+}
+
+/* extra small devices */
+@media screen and (min-width: 480px) {
+    .title-card h1 {
+        font-size: 2em;
+    }
+
+    .form-steps li span {
+        font-size: 0.85em;
+    }
+
+    .error-messages {
+        width: 60%;
+    }
+
+    .div-field {
+        clear: none;
+    }
+
+    .dynamic-field-description {
+        display: none;
+    }
+
+    input {
+        width: 70%;
+    }
+    
+    textarea {
+        width: 67.5%;
+    }
+
+    input::-webkit-placeholder, textarea::-webkit-placeholder {
+        color: transparent;
+    }
+
+    input::-ms-placeholder, textarea::-ms-placeholder {
+        color: transparent;
+    }
+
+    input::placeholder, textarea::placeholder {
+        color: transparent;
+    }
+
+    .field-label {
+        display: block;
+        font-size: 0.9em;
+    }
+
+    .form-button {
+        width: auto;
+    }
+
+    .paging-buttons button {
+        padding: 8px 12px;
+        margin: 2px;
+    }
+
+    .confirm-action-button-cancel {
+        width: auto;
+        float: left;
+    }
+
+    .confirm-action-button-confirm, .confirm-action-button-confirm:focus {
+        width: auto;
+        float: right;
+    }
+}
+
+/* small devices */
+@media screen and (min-width: 768px) {
+    .title-card h1 {
+        font-size: 2.3em;
+    }
+
+    .field-label {
+        font-size: 1em;
+    }
+}
+
+/* medium devices */
+@media screen and (min-width: 992px) {
+    .title-card h1 {
+        font-size: 2.7em;
+    }
+
+    .form-steps li div {
+        width: 75px;
+        height: 75px;
+        line-height: 75px;
+    }
+
+    .form-progress-bar {
+        top: 37.5px;
+    }
+
+    .form-steps li span {
+        font-size: 0.95em;
+    }
+
+    .validation-area {
+        text-align: right;
+    }
+
+    .error-messages {
+        float: right;
+        width: 90%;
+    }
+}
+
+/* large devices */
+@media screen and (min-width: 1200px) {
+    .title-card h1 {
+        font-size: 3.7em;
+    }
+
+    .paging-buttons button {
+        padding: 10px 15px;
+    }
+}

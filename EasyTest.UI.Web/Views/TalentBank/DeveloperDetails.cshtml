@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "Easy Communication and Technology | Talent Bank - Developers - Developer Details";
+
+    @section exclusive {
+        <link href="~/Content/developer-details.css" rel="stylesheet" type="text/css" />
+    }
+}
+
+<div class="container" ng-controller="developerDetailsCtrl" ng-init="getDeveloperTalent(@ViewContext.RouteData.Values["id"])">
+    <div class="row">
+        <div class="title-card">
+            <h1>Developer Details</h1>
+        </div>
+
+        <nav class="form-status">
+            <ul class="form-steps">
+                <li ng-class="{ 'current-step' : currentStep == 1 }">
+                    <div ng-click="goToStep(1)"><i class="fas fa-2x fa-user"></i></div>
+                    <span>Basic Information</span>
+                </li>
+
+                <li ng-class="{ 'current-step' : currentStep == 2 }">
+                    <div ng-click="goToStep(2)"><i class="fas fa-2x fa-graduation-cap"></i></div>
+                    <span>Knowledge</span>
+                </li>
+
+                <li ng-class="{ 'current-step' : currentStep == 3 }">
+                    <div ng-click="goToStep(3)"><i class="fas fa-2x fa-cogs"></i></div>
+                    <span>Additional Information</span>
+                </li>
+
+                <li ng-class="{ 'current-step' : currentStep == 4 }">
+                    <div ng-click="goToStep(4)"><i class="fas fa-2x fa-university"></i></div>
+                    <span>Bank Information</span>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="form-description" ng-show="currentStep == 1">
+            <h2>Basic Information</h2>
+        </div>
+
+        <div class="form-description" ng-show="currentStep == 2">
+            <h2>Knowledge</h2>
+        </div>
+
+        <div class="form-description" ng-show="currentStep == 3">
+            <h2>Additional Information</h2>
+        </div>
+
+        <div class="form-description" ng-show="currentStep == 4">
+            <h2>Bank Information</h2>
+        </div>
+
+        <div class="col-xs-12 col-md-8">
+            <form name="fullForm">
+                <fieldset ng-form="developersForm.stepOne" ng-show="currentStep == 1">
+                    <p class="field-description">Name <i class="fas fa-user"></i></p>
+                    <p class="field-value">{{ developerTalent.name }}</p>
+
+                    <p class="field-description">E-mail <i class="far fa-envelope"></i></p>
+                    <p class="field-value">{{ developerTalent.email }}</p>
+
+                    <p class="field-description">Skype <i class="fab fa-skype"></i></p>
+                    <p class="field-value">{{ developerTalent.skype }}</p>
+
+                    <p class="field-description">WhatsApp <i class="fab fa-whatsapp"></i></p>
+                    <p class="field-value">{{ developerTalent.whatsApp }}</p>
+
+                    <p class="field-description">Linked<i class="fab fa-linkedin"></i></p>
+                    <p class="field-value" ng-class="{ 'has-link': developerTalent.linkedIn, 'no-link': !developerTalent.linkedIn }" ng-click="openLink(developerTalent.linkedIn)">{{ developerTalent.linkedIn || "-" }}</p>
+
+                    <p class="field-description">State <i class="fas fa-map-marker-alt"></i></p>
+                    <p class="field-value">{{ developerTalent.state }}</p>
+
+                    <p class="field-description">City <i class="fas fa-map-marker-alt"></i></p>
+                    <p class="field-value">{{ developerTalent.city }}</p>
+                </fieldset>
+
+                <fieldset ng-form="developersForm.stepTwo" ng-show="currentStep == 2">
+                    <p class="field-description">Knowledge assessment from 0 to 5 for a given technology.</p>
+
+                    <div class="level-selector" ng-repeat="technology in technologies">
+                        <h3><span ng-class="{ 'required-field': technology.required } ">{{ technology.name + " ( Level " + (developerTalent.knowledge.technologies[technology.id] != null ? developerTalent.knowledge.technologies[technology.id] : "-") + " )" }}</span></h3>
+
+                        <div class="level-bar">
+                            <div class="level" ng-class="{ [ 'level-' + developerTalent.knowledge.technologies[technology.id] ] : developerTalent.knowledge.technologies[technology.id] }"></div>
+                        </div>
+                    </div>
+
+                    <p class="field-description">Other knowledges in technology.</p>
+                    <p class="field-value">{{ developerTalent.knowledge.technologies.other || "-" }}</p>
+
+                    <p class="field-description">Spoken languages.</p>
+                    <label class="check" ng-repeat="option in languages" ng-if="developerTalent.knowledge.languages[option.id]">
+                        <input type="checkbox" ng-model="developerTalent.knowledge.languages[option.id]" disabled>
+                        <span class="check-mark"></span>
+                        <span class="choice-description">{{ option.description }}</span>
+                    </label>
+
+                    <label class="check pull-left" ng-if="developerTalent.knowledge.languages.more">
+                        <input type="checkbox" ng-model="developerTalent.knowledge.languages.more" disabled>
+                        <span class="check-mark"></span>
+                        <span class="choice-description">Other:</span>
+                    </label>
+                    <p class="field-value" ng-if="developerTalent.knowledge.languages.more">{{ developerTalent.knowledge.languages.other }}</p>
+
+                    <p class="field-description">Test project link.</p>
+                    <p class="field-value" ng-class="{ 'has-link': developerTalent.testProjectLink, 'no-link': !developerTalent.testProjectLink }" ng-click="openLink(developerTalent.testProjectLink)">{{ developerTalent.testProjectLink || "-" }}</p>
+
+                    <p class="field-description">Portfolio (Link) <i class="fas fa-briefcase"></i></p>
+                    <p class="field-value" ng-class="{ 'has-link': developerTalent.portfolioLink, 'no-link': !developerTalent.portfolioLink }" ng-click="openLink(developerTalent.portfolioLink)">{{ developerTalent.portfolioLink || "-" }}</p>
+                </fieldset>
+
+                <fieldset ng-form="developersForm.stepThree" ng-show="currentStep == 3">
+                    <p class="field-description">Availability to work currently.</p>
+                    <label class="check" ng-repeat="option in weeklyAvailability" ng-if="developerTalent.additionalInformation.weeklyAvailability[option.id]">
+                        <input type="checkbox" ng-model="developerTalent.additionalInformation.weeklyAvailability[option.id]" disabled>
+                        <span class="check-mark"></span>
+                        <span class="choice-description">{{ option.description }}</span>
+                    </label>
+
+                    <p class="field-description">Best time to work.</p>
+                    <label class="check" ng-repeat="option in preferredPeriod" ng-if="developerTalent.additionalInformation.preferredPeriod[option.id]">
+                        <input type="checkbox" ng-model="developerTalent.additionalInformation.preferredPeriod[option.id]" disabled>
+                        <span class="check-mark"></span>
+                        <span class="choice-description">{{ option.description }}</span>
+                    </label>
+
+                    <p class="field-description">Hourly salary requirement.</p>
+                    <p class="field-value">{{ developerTalent.additionalInformation.hourlySalaryPretension }}</p>
+                </fieldset>
+
+                <fieldset ng-form="developersForm.stepFour" ng-show="currentStep == 4">
+                    <p class="field-description">Name <i class="fa fa-user"></i></p>
+                    <p class="field-value">{{ developerTalent.bankInformation.name || "-" }}</p>
+
+                    <p class="field-description">CPF (Only for Brazilians)</p>
+                    <p class="field-value">{{ developerTalent.bankInformation.cpf || "-" }}</p>
+
+                    <p class="field-description">Bank</p>
+                    <p class="field-value">{{ developerTalent.bankInformation.bank || "-" }}</p>
+
+                    <p class="field-description">Agency</p>
+                    <p class="field-value">{{ developerTalent.bankInformation.agency || "-" }}</p>
+
+                    <p class="field-description">Account Type</p>
+                    <p class="field-value" ng-if="!developerTalent.bankInformation.chainAccount && !developerTalent.bankInformation.savingsAccount">-</p>
+                    <label class="check" ng-if="developerTalent.bankInformation.chainAccount">
+                        <input type="checkbox" ng-model="developerTalent.bankInformation.chainAccount" disabled>
+                        <span class="check-mark"></span>
+                        <span class="choice-description">Chain</span>
+                    </label>
+                    <label class="check" ng-if="developerTalent.bankInformation.savingsAccount">
+                        <input type="checkbox" ng-model="developerTalent.bankInformation.savingsAccount" disabled>
+                        <span class="check-mark"></span>
+                        <span class="choice-description">Savings</span>
+                    </label>
+
+                    <p class="field-description">Account Number</p>
+                    <p class="field-value">{{ developerTalent.bankInformation.accountNumber || "-" }}</p>
+
+                    <p class="field-description">Other Information</p>
+                    <p class="field-value">{{ developerTalent.bankInformation.otherInformation || "-" }}</p>
+                </fieldset>
+
+                <div class="form-buttons">
+                    <a class="form-button form-button-back pull-left" href="~/talent-bank/developers">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button type="button" class="goToTop" ng-click="goToTop()"><i class="fas fa-chevron-circle-up"></i></button>
+</div>

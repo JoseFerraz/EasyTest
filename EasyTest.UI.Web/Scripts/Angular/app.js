@@ -1,0 +1,1 @@
+﻿angular.module("easyTest", ["ngAnimate", "angularUtils.directives.dirPagination"]);

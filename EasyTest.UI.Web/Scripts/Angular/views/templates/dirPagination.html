@@ -1,0 +1,9 @@
+<div class="paging-buttons" ng-if="pages.length > 1 || !autoHide">
+    <button type="button" ng-if="boundaryLinks && pagination.current > 1 && maxSize > 7" ng-click="setCurrent(1)">First</button>
+    <button type="button" ng-if="directionLinks && pagination.current > 1" ng-click="setCurrent(pagination.current - 1)">Previous</button>
+
+    <button type="button" ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ 'active-paging-button': pagination.current == pageNumber }" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</button>
+
+    <button type="button" ng-if="directionLinks && pagination.current < pagination.last" ng-click="setCurrent(pagination.current + 1)">Next</button>
+    <button type="button" ng-if="boundaryLinks && pagination.current < pagination.last && maxSize > 7" ng-click="setCurrent(pagination.last)">Last</button>
+</div>

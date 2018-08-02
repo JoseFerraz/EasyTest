@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html ng-app="easyTest">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <!-- assets/libs css -->
+    <link href="~/Content/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/animate.css" rel="stylesheet" type="text/css" />
+    <link href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <!-- end -->
+
+    <!-- assets/libs js -->
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script src="~/Scripts/angular-animate.min.js"></script>
+    <!-- end -->
+
+    <!-- angular -->
+        <!-- app config files -->
+        <script src="~/Scripts/Angular/app.js"></script>
+        <script src="~/Scripts/Angular/values/global.js"></script>
+        <!-- end -->
+        
+        <!-- services -->
+        <script src="~/Scripts/Angular/services/developers-talents-api.js"></script>
+        <script src="~/Scripts/Angular/services/modals.js"></script>
+        <!-- end -->
+        
+        <!-- interceptors -->
+        
+        <!-- end -->
+        
+        <!-- filters -->
+        
+        <!-- end -->
+        
+        <!-- directives -->
+        <script src="~/Scripts/Angular/directives/dirPagination.js"></script>
+        <!-- end -->
+        
+        <!-- controllers -->
+        <script src="~/Scripts/Angular/controllers/talent-bank/developers-form.js"></script>
+        <script src="~/Scripts/Angular/controllers/talent-bank/developers.js"></script>
+        <script src="~/Scripts/Angular/controllers/talent-bank/developer-details.js"></script>
+        <script src="~/Scripts/Angular/controllers/talent-bank/developer-edit.js"></script>
+        <!-- end -->
+    <!-- end -->
+
+    <!-- exclusive -->
+    @RenderSection("exclusive", required: false)
+    <!-- end -->
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

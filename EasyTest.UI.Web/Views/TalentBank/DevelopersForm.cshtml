@@ -1,0 +1,297 @@
+﻿@{
+    ViewBag.Title = "Easy Communication and Technology | Work with us - Developer / Trabalhe Conosco - Desenvolvedor";
+}
+
+<div class="container" ng-controller="developersFormCtrl">
+    <div class="row">
+        <hgroup class="title-card">
+            <h1>Talents / Talentos</h1>
+            <h2>Developers / Desenvolvedores</h2>
+        </hgroup>
+
+        <nav class="form-status">
+            <ul class="form-steps">
+                <li ng-class="{ 'current-step' : currentStep == 1, 'completed-step' : currentStep > 1 }">
+                    <div ng-click="goToStep(1)"><i class="fas fa-2x fa-user"></i></div>
+                    <span>Basic Information / Informação Básica</span>
+                </li>
+
+                <li ng-class="{ 'current-step' : currentStep == 2, 'completed-step' : currentStep > 2 }">
+                    <div ng-click="goToStep(2)"><i class="fas fa-2x fa-graduation-cap"></i></div>
+                    <span>Knowledge / Conhecimento</span>
+                </li>
+
+                <li ng-class="{ 'current-step' : currentStep == 3, 'completed-step' : currentStep > 3 }">
+                    <div ng-click="goToStep(3)"><i class="fas fa-2x fa-cogs"></i></div>
+                    <span>Additional Information / Informação Adicional</span>
+                </li>
+
+                <li ng-class="{ 'current-step' : currentStep == 4 }">
+                    <div ng-click="goToStep(4)"><i class="fas fa-2x fa-university"></i></div>
+                    <span>Bank Information / Informação Bancária</span>
+                </li>
+            </ul>
+
+            <div class="form-progress-bar" ng-class="'step-' + currentStep"></div>
+        </nav>
+
+        <div class="form-description" ng-show="currentStep == 1">
+            <h2>Basic Information / Informação Básica</h2>
+
+            <p>Interested in working with us as a developer? Please fill out the form below! / Tem interesse em trabalhar conosco como desenvolvedor? Por favor, preencha o formulário a seguir!</p>
+
+            <p>Document explaining company details: / Documento que explica detalhes da empresa:</p>
+
+            <p><a href="https://docs.google.com/document/d/145QuJ8-efr-pmNGV-2DOOGHD-1dc3MERSeL5g0XoqmM" target="_blank">https://docs.google.com/document/d/145QuJ8-efr-pmNGV-2DOOGHD-1dc3MERSeL5g0XoqmM</a></p>
+
+            <p>Want to study for free the technologies used by Easy? Visit: / Quer estudar gratuitamente as tecnologias usadas pela Easy? Acesse:</p>
+
+            <p><a href="http://moodle.easycomtec.com" target="_blank">http://moodle.easycomtec.com</a></p>
+        </div>
+
+        <div class="form-description" ng-show="currentStep == 2">
+            <h2>Knowledge / Conhecimento</h2>
+        </div>
+
+        <div class="form-description" ng-show="currentStep == 3">
+            <h2>Additional Information / Informação Adicional</h2>
+        </div>
+
+        <div class="form-description" ng-show="currentStep == 4">
+            <h2>Bank Information / Informação Bancária</h2>
+
+            <p>You can choose to receive your payment through Paypal, PagSeguro or conventional bank accounts. / Você pode optar em receber seu pagamento pelo Paypal, PagSeguro ou contas bancárias convencionais.</p>
+        </div>
+
+        <div class="col-xs-12 col-md-4 pull-right">
+            <div class="validation-area">
+                <p><span class="required-field">Mandatory / Obrigatório</span></p>
+
+                <div class="error-messages" ng-if="developersForm.stepOne.commitFailed && currentStep == 1">
+                    <div class="error-message" ng-if="developersForm.stepOne.$error.required">
+                        Please enter the required information(s). / Por favor, preencha a(s) informação(ões) obrigatória(s).
+                    </div>
+
+                    <div class="error-message" ng-if="developersForm.stepOne.name.$error.required">
+                        The name field is required. / O campo nome é obrigatório.
+                    </div>
+
+                    <div class="error-message" ng-if="developersForm.stepOne.email.$error.required">
+                        The e-mail field is required. / O campo e-mail é obrigatório.
+                    </div>
+
+                    <div class="error-message" ng-if="developersForm.stepOne.email.$error.email">
+                        Invalid email format. / Formato de e-mail inválido.
+                    </div>
+
+                    <div class="error-message" ng-if="developersForm.stepOne.skype.$error.required">
+                        The Skype field is required. / O campo Skype é obrigatório.
+                    </div>
+
+                    <div class="error-message" ng-if="developersForm.stepOne.whatsApp.$error.required">
+                        The WhatsApp field is required. / O campo WhatsApp é obrigatório.
+                    </div>
+
+                    <div class="error-message" ng-if="developersForm.stepOne.linkedIn.$error.pattern">
+                        Enter the protocol prefix (http, https, etc) of your LinkedIn link. / Informe o prefixo do protocolo (http, https, etc) do link do seu LinkedIn.
+                    </div>
+
+                    <div class="error-message" ng-if="developersForm.stepOne.state.$error.required">
+                        The state field is required. / O campo estado é obrigatório.
+                    </div>
+
+                    <div class="error-message" ng-if="developersForm.stepOne.city.$error.required">
+                        The city field is required. / O campo cidade é obrigatório.
+                    </div>
+                </div>
+
+                <div class="error-messages" ng-if="developersForm.stepTwo.commitFailed && currentStep == 2">
+                    <div class="error-message" ng-if="developersForm.stepTwo.$error.required">
+                        Please enter the required information(s). / Por favor, preencha a(s) informação(ões) obrigatória(s).
+                    </div>
+
+                    <div class="error-message" ng-if="developersForm.stepTwo.testProjectLink.$error.pattern">
+                        Enter the protocol prefix (http, https, etc) of the test project link. / Informe o prefixo do protocolo (http, https, etc) do link do projeto de teste.
+                    </div>
+
+                    <div class="error-message" ng-if="developersForm.stepTwo.portfolioLink.$error.pattern">
+                        Enter the protocol prefix (http, https, etc) of the portfolio link. / Informe o prefixo do protocolo (http, https, etc) do link do portfólio.
+                    </div>
+                </div>
+
+                <div class="error-messages" ng-if="developersForm.stepThree.commitFailed && currentStep == 3">
+                    <div class="error-message" ng-if="developersForm.stepThree.$error.required">
+                        Please enter the required information(s). / Por favor, preencha a(s) informação(ões) obrigatória(s).
+                    </div>
+
+                    <div class="error-message" ng-if="developersForm.stepThree.hourlySalaryPretension.$error.required">
+                        Enter your hourly salary pretension. / Informe sua pretensão salarial por hora.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-8">
+            <form>
+                <fieldset ng-form="developersForm.stepOne" ng-show="currentStep == 1">
+                    <div class="div-field required-field">
+                        <input type="text" placeholder="Name / Nome" name="name" ng-model="developerTalent.name" ng-required="true" maxlength="80">
+                        <span class="field-label">Name / Nome <i class="fas fa-user"></i></span>
+                    </div>
+
+                    <div class="div-field required-field">
+                        <input type="email" placeholder="E-mail" name="email" ng-model="developerTalent.email" ng-required="true" maxlength="80">
+                        <span class="field-label">E-mail <i class="far fa-envelope"></i></span>
+                    </div>
+
+                    <div class="div-field required-field">
+                        <input type="text" placeholder="Skype" name="skype" ng-model="developerTalent.skype" ng-required="true" maxlength="80">
+                        <span class="field-label">Skype <i class="fab fa-skype"></i></span>
+                    </div>
+
+                    <div class="div-field required-field">
+                        <input type="text" placeholder="WhatsApp" name="whatsApp" ng-model="developerTalent.whatsApp" ng-required="true" maxlength="30">
+                        <span class="field-label">WhatsApp <i class="fab fa-whatsapp"></i></span>
+                    </div>
+
+                    <div class="div-field">
+                        <input type="text" placeholder="LinkedIn" name="linkedIn" ng-model="developerTalent.linkedIn" ng-pattern="/^http[s]*:\/\//" maxlength="80">
+                        <span class="field-label">Linked<i class="fab fa-linkedin"></i></span>
+                    </div>
+
+                    <div class="div-field required-field">
+                        <input type="text" placeholder="State / Estado" name="state" ng-model="developerTalent.state" ng-required="true" maxlength="80">
+                        <span class="field-label">State / Estado <i class="fas fa-map-marker-alt"></i></span>
+                    </div>
+
+                    <div class="div-field required-field">
+                        <input type="text" placeholder="City / Cidade" name="city" ng-model="developerTalent.city" ng-required="true" maxlength="80">
+                        <span class="field-label">City / Cidade <i class="fas fa-map-marker-alt"></i></span>
+                    </div>
+                </fieldset>
+
+                <fieldset ng-form="developersForm.stepTwo" ng-show="currentStep == 2">
+                    <p class="field-description">Rate yourself from 0 to 5 for the knowledge specified below, and that's okay if you do not know many things, the important thing is to be honest! / Avalie-se de 0 a 5 quanto aos conhecimentos especificados abaixo, e tudo bem se não souber de muitas coisas, o importante é que seja sincero!</p>
+
+                    <div class="level-selector" ng-repeat="technology in technologies">
+                        <h3><span ng-class="{ 'required-field': technology.required } ">{{ technology.name }}</span></h3>
+
+                        <label ng-repeat="level in technologyLevels">
+                            <input type="radio" ng-model="$parent.developerTalent.knowledge.technologies[technology.id]" ng-value="level" ng-required="technology.required">
+                            <span>{{ level }}</span>
+                        </label>
+
+                        <div class="level-bar">
+                            <div class="level" ng-class="{ [ 'level-' + developerTalent.knowledge.technologies[technology.id] ] : developerTalent.knowledge.technologies[technology.id] }"></div>
+                        </div>
+                    </div>
+
+                    <p class="field-description">Do you know any other language or framework that was not listed above? Tell us and evaluate yourself from 0 to 5. / Conhece mais alguma linguagem ou framework que não foi listado aqui em cima? Conte-nos e se auto avalie ainda de 0 a 5.</p>
+                    <div class="div-field">
+                        <textarea class="no-field-label" ng-model="developerTalent.knowledge.technologies.other" maxlength="500"></textarea>
+                    </div>
+
+                    <p class="field-description"><span class="required-field">How</span> many languages do you speak? / Quais idiomas você fala fluentemente?</p>
+                    <label class="check" ng-repeat="option in languages">
+                        <input type="checkbox" ng-model="developerTalent.knowledge.languages[option.id]" ng-required="!developerTalent.knowledge.languages">
+                        <span class="check-mark"></span>
+                        <span class="choice-description">{{ option.description }}</span>
+                    </label>
+
+                    <label class="check pull-left">
+                        <input type="checkbox" ng-model="developerTalent.knowledge.languages.more" ng-click="developerTalent.knowledge.languages.other = null">
+                        <span class="check-mark"></span>
+                        <span class="choice-description">Other / Outro</span>
+                    </label>
+                    <div class="div-field" ng-if="developerTalent.knowledge.languages.more">
+                        <textarea class="no-field-label" ng-model="developerTalent.knowledge.languages.other" ng-required="true" maxlength="500"></textarea>
+                    </div>
+
+                    <p class="field-description">Do you have the test project mentioned in the company's welcome document? Insert the link for it here. / Tem o projeto de teste citado no documento de boas-vindas da empresa? Insira o link para ele aqui.</p>
+                    <div class="div-field">
+                        <input type="text" class="no-field-label" name="testProjectLink" ng-model="developerTalent.testProjectLink" ng-pattern="/^http[s]*:\/\//" maxlength="80">
+                    </div>
+
+                    <div class="div-field">
+                        <input type="text" placeholder="Portfolio Link / Link do Portfólio" name="portfolioLink" ng-model="developerTalent.portfolioLink" ng-pattern="/^http[s]*:\/\//" maxlength="80">
+                        <span class="field-label">Portfolio (Link) <i class="fas fa-briefcase"></i></span>
+                    </div>
+                </fieldset>
+
+                <fieldset ng-form="developersForm.stepThree" ng-show="currentStep == 3">
+                    <p class="field-description"><span class="required-field">What</span> is your willingness to work today? / Qual é sua disponibilidade para trabalhar hoje?</p>
+                    <label class="check" ng-repeat="option in weeklyAvailability">
+                        <input type="checkbox" ng-model="developerTalent.additionalInformation.weeklyAvailability[option.id]" ng-required="!developerTalent.additionalInformation.weeklyAvailability">
+                        <span class="check-mark"></span>
+                        <span class="choice-description">{{ option.description }}</span>
+                    </label>
+
+                    <p class="field-description"><span class="required-field">What's</span> the best time to work for you? / Pra você qual é o melhor horário para trabalhar?</p>
+                    <label class="check" ng-repeat="option in preferredPeriod">
+                        <input type="checkbox" ng-model="developerTalent.additionalInformation.preferredPeriod[option.id]" ng-required="!developerTalent.additionalInformation.preferredPeriod">
+                        <span class="check-mark"></span>
+                        <span class="choice-description">{{ option.description }}</span>
+                    </label>
+
+                    <p class="field-description">What is your hourly salary requirements? / Qual sua pretensão salarial por hora?</p>
+                    <div class="div-field required-field">
+                        <input type="text" class="no-field-label" name="hourlySalaryPretension" ng-model="developerTalent.additionalInformation.hourlySalaryPretension" ng-required="true" maxlength="20">
+                    </div>
+                </fieldset>
+
+                <fieldset ng-form="developersForm.stepFour" ng-show="currentStep == 4">
+                    <div class="div-field">
+                        <input type="text" placeholder="Name / Nome" ng-model="developerTalent.bankInformation.name" maxlength="80">
+                        <span class="field-label">Name / Nome <i class="fa fa-user"></i></span>
+                    </div>
+
+                    <p class="field-description">CPF (Only for Brazilians)</p>
+                    <div class="div-field">
+                        <input type="text" class="no-field-label" ng-model="developerTalent.bankInformation.cpf" maxlength="30">
+                    </div>
+
+                    <p class="field-description">Bank / Banco</p>
+                    <div class="div-field">
+                        <input type="text" class="no-field-label" ng-model="developerTalent.bankInformation.bank" maxlength="30">
+                    </div>
+
+                    <p class="field-description">Agency / Agencia</p>
+                    <div class="div-field">
+                        <input type="text" class="no-field-label" ng-model="developerTalent.bankInformation.agency" maxlength="30">
+                    </div>
+
+                    <p class="field-description">Account Type / Tipo de conta</p>
+                    <label class="check">
+                        <input type="checkbox" ng-model="developerTalent.bankInformation.chainAccount">
+                        <span class="check-mark"></span>
+                        <span class="choice-description">Chain / Corrente</span>
+                    </label>
+
+                    <label class="check">
+                        <input type="checkbox" ng-model="developerTalent.bankInformation.savingsAccount">
+                        <span class="check-mark"></span>
+                        <span class="choice-description">Savings / Poupança</span>
+                    </label>
+
+                    <p class="field-description">Account Number / Número da conta</p>
+                    <div class="div-field">
+                        <input type="text" class="no-field-label" ng-model="developerTalent.bankInformation.accountNumber" maxlength="30">
+                    </div>
+
+                    <p class="field-description">Other Information / Outra informação</p>
+                    <div class="div-field">
+                        <textarea class="no-field-label" ng-model="developerTalent.bankInformation.otherInformation" maxlength="500"></textarea>
+                    </div>
+                </fieldset>
+
+                <div class="form-buttons">
+                    <button type="button" class="form-button form-button-back pull-left" ng-if="currentStep > 1" ng-click="back()">Back / Voltar</button>
+                    <button type="button" class="form-button form-button-next pull-right" ng-if="currentStep < 4" ng-click="next()">Next / Próximo</button>
+                    <button type="button" class="form-button form-button-send pull-right" ng-if="currentStep == 4" ng-click="postDeveloperTalent(developerTalent)">Submit / Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button type="button" class="goToTop" ng-click="goToTop()"><i class="fas fa-chevron-circle-up"></i></button>
+</div>
